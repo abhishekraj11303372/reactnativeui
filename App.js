@@ -8,9 +8,9 @@ const Stack = createNativeStackNavigator();
 export default function App() {
 return(
   <NavigationContainer>
-    <Stack.Navigator  screenOptions={{headerStyle:{backgroundColor:'purple'}}}>
+    <Stack.Navigator  screenOptions={{headerStyle:{backgroundColor:'purple'},headerTintColor:'white'}}>
       <Stack.Screen name="ShopTab" component={ShopTab} options={{headerShown:false}} />
-      <Stack.Screen name="UserLogin" component={UserLoginScreen} options={{}} />
+      <Stack.Screen name="UserLogin" component={UserLoginScreen} options={{title: 'User Login'}} />
     </Stack.Navigator>
   </NavigationContainer>
 ); 
