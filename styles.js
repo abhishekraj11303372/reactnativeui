@@ -18,4 +18,19 @@ const styles = StyleSheet.create({
     }
   });
 
-  export {styles};
+  const toastConfig = {
+    warning: ({text1,props}) => (
+      <View style={{width:'100%',backgroundColor:'#ffd580',paddingLeft:10,height:30,paddingTop:5}}>
+         <Text>{text1}</Text> 
+         <Text>{props.uuid}</Text> 
+      </View>
+    ),
+    done: ({text1,props}) => (
+      <View style={{width:'100%',backgroundColor:'#add8e6',paddingLeft:10,height:30,paddingTop:5}}>
+         <Text>{text1}</Text> 
+         <Text>{props.uuid}</Text> 
+      </View>
+    ),
+  };
+
+  export {styles,toastConfig};
