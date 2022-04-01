@@ -60,7 +60,7 @@ const UserLoginScreen = () => {
                 </View> 
                 <View>
                     <View>
-                        <TouchableOpacity onPress={() => {console.log('Password Reset Screen')}}>
+                        <TouchableOpacity onPress={()=>navigation.navigate('SendPasswordResetEmail')}>
                             <Text style={{fontWeight:'bold',alignSelf:'center' , marginBottom:10}}>Forgot Password</Text>
                         </TouchableOpacity>
                     </View>

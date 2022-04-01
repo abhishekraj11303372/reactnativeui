@@ -17,21 +17,22 @@ const RegisterationScreen = () => {
     const [tc,setTc] = useState(false);
 
     const handleFormSubmit = () => {
-        if(email && password ) {
-            console.log("Login Success");
-            const formData = { email, password }
+        if(email && password && name && confirmPassword && tc) {
+            console.log("Account Created Successfully");
+            const formData = { name, email, password, confirmPassword, tc }
             console.log(formData);
             const clearTextInput= () => {
                 setEmail(''),
                 setName(''),
                 setPassword(''),
                 setConfirmPassword('')
+                setTc(false)
             };
             Toast.show({
                 type:'done',
                 position:'top',
                 topOffset:0,
-                text1:"Login Success",
+                text1:"Account Created Successfully",
             })
         }
         else {
@@ -49,9 +50,6 @@ const RegisterationScreen = () => {
         <Toast config={toastConfig} />
         <ScrollView>
             <View>
-                {/* <View style={{alignSelf:'center' , marginBottom:15}}>
-                    <MaterialCommunityIcons name='rocket-launch' size={100} color="purple" />
-                </View> */}
                 <View style={{marginHorizontal:30,marginBottom:10}}>
                     <Text style={styles.labelText}>Name</Text>
                     <TextInput value={name} onChangeText={setName} placeholder="Name here" onPress={console.log(email)} keyboardType='name-phone-pad' style={styles.input}/>
@@ -69,7 +67,7 @@ const RegisterationScreen = () => {
                     <Text style={styles.labelText}>Confirm Password</Text>
                     <TextInput value={confirmPassword} onChangeText={setConfirmPassword} placeholder="Password here" onPress={console.log(password)} secureTextEntry={true} style={styles.input}/>
                 </View> 
-                <View style={{marginHorizontal:40,marginTop:10,marginBottom:5,flex:1, flexDirection:'row'}}>
+                <View style={{marginHorizontal:40,marginTop:20,flex:1, flexDirection:'row'}}>
                     <Checkbox value={tc} onValueChange={setTc} color={tc? 'skyblue' : undefined } />
                     <Text style={styles.labelText}>I agree to term and condition.</Text>
                 </View> 
@@ -78,13 +76,8 @@ const RegisterationScreen = () => {
                 </View> 
                 <View>
                     <View>
-                        <TouchableOpacity onPress={() => {console.log('Password Reset Screen')}}>
-                            <Text style={{fontWeight:'bold',alignSelf:'center' , marginBottom:10}}>Forgot Password</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View>
-                        <TouchableOpacity onPress={() => {console.log('New User Registeration Screen')}}>
-                            <Text style={{fontWeight:'bold',alignSelf:'center'}}>New User Registeration ?</Text>
+                        <TouchableOpacity onPress={() => {navigation.navigate('UserLogin')}}>
+                            <Text style={{fontWeight:'bold',alignSelf:'center'}}>Already Registered ?</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
