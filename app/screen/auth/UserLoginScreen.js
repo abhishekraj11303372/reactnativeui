@@ -26,7 +26,8 @@ const UserLoginScreen = () => {
                 position:'top',
                 topOffset:0,
                 text1:"Login Success",
-            })
+            });
+            navigation.navigate('UserPanelTab');
         }
         else {
             console.log("All Fields are Required");
