@@ -7,27 +7,24 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { ScrollView } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
-const UserLoginScreen = () => {
+const SendPasswordResetEmailScreen = () => {
     const navigation = useNavigation();
     const [email,setEmail] = useState("");
-    const [password,setPassword] = useState("");
 
     const handleFormSubmit = () => {
-        if(email && password ) {
+        if(email) {
             console.log("Login Success");
-            const formData = { email, password }
+            const formData = { email}
             console.log(formData);
             const clearTextInput= () => {
-                setEmail(''),
-                setPassword('')
+                setEmail('')
             };
-            Toast.show({
+            Toast.show({    
                 type:'done',
                 position:'top',
                 topOffset:0,
                 text1:"Login Success",
-            });
-            navigation.navigate('UserPanelTab');
+            })
         }
         else {
             console.log("All Fields are Required");
@@ -52,29 +49,13 @@ const UserLoginScreen = () => {
                     <Text style={styles.labelText}>Email</Text>
                     <TextInput value={email} onChangeText={setEmail} placeholder="Email here" onPress={console.log(email)} keyboardType='email-address' style={styles.input}/>
                 </View> 
-                <View style={{marginHorizontal:30}}>
-                    <Text style={styles.labelText}>Password</Text>
-                    <TextInput value={password} onChangeText={setPassword} placeholder="Password here" onPress={console.log(password)} secureTextEntry={true} style={styles.input}/>
-                </View> 
                 <View style={{marginHorizontal:30,width:200,alignSelf:'center',margin:20}}>
-                    <Button title='Login' onPress={handleFormSubmit} color='purple' />
+                    <Button title='Submit' onPress={handleFormSubmit} color='purple' />
                 </View> 
-                <View>
-                    <View>
-                        <TouchableOpacity onPress={()=>navigation.navigate('SendPasswordResetEmail')}>
-                            <Text style={{fontWeight:'bold',alignSelf:'center' , marginBottom:10}}>Forgot Password</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View>
-                        <TouchableOpacity onPress={()=>navigation.navigate('Registeration')}>
-                            <Text style={{fontWeight:'bold',alignSelf:'center'}}>New User Registeration ?</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
             </View>    
         </ScrollView> 
     </SafeAreaView>
   )
 }
 
-export default UserLoginScreen
+export default SendPasswordResetEmailScreen

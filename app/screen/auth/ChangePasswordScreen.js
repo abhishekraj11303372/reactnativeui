@@ -7,27 +7,26 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { ScrollView } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
-const UserLoginScreen = () => {
+const ChangePasswordScreen = () => {
     const navigation = useNavigation();
-    const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
+    const [confirmPassword,setConfirmPassword] = useState("");
 
     const handleFormSubmit = () => {
-        if(email && password ) {
-            console.log("Login Success");
-            const formData = { email, password }
+        if( confirmPassword && password ) {
+            console.log("Password Changed Successfully");
+            const formData = { password, confirmPassword }
             console.log(formData);
             const clearTextInput= () => {
-                setEmail(''),
-                setPassword('')
+                setPassword(''),
+                setConfirmPassword('')
             };
             Toast.show({
                 type:'done',
                 position:'top',
                 topOffset:0,
-                text1:"Login Success",
+                text1:"Password Changed Successfully",
             });
-            navigation.navigate('UserPanelTab');
         }
         else {
             console.log("All Fields are Required");
@@ -49,32 +48,20 @@ const UserLoginScreen = () => {
                     <MaterialCommunityIcons name='rocket-launch' size={100} color="purple" />
                 </View>
                 <View style={{marginHorizontal:30,marginBottom:10}}>
-                    <Text style={styles.labelText}>Email</Text>
-                    <TextInput value={email} onChangeText={setEmail} placeholder="Email here" onPress={console.log(email)} keyboardType='email-address' style={styles.input}/>
+                    <Text style={styles.labelText}>New Password</Text>
+                    <TextInput value={password} onChangeText={setPassword} placeholder="New Password here" onPress={console.log(password)}secureTextEntry={true} style={styles.input}/>
                 </View> 
                 <View style={{marginHorizontal:30}}>
-                    <Text style={styles.labelText}>Password</Text>
-                    <TextInput value={password} onChangeText={setPassword} placeholder="Password here" onPress={console.log(password)} secureTextEntry={true} style={styles.input}/>
+                    <Text style={styles.labelText}>Confirm New Password</Text>
+                    <TextInput value={confirmPassword} onChangeText={setConfirmPassword} placeholder="Confirm New Password here" onPress={console.log(confirmPassword)} style={styles.input}/>
                 </View> 
                 <View style={{marginHorizontal:30,width:200,alignSelf:'center',margin:20}}>
-                    <Button title='Login' onPress={handleFormSubmit} color='purple' />
+                    <Button title='Change Password' onPress={handleFormSubmit} color='purple' />
                 </View> 
-                <View>
-                    <View>
-                        <TouchableOpacity onPress={()=>navigation.navigate('SendPasswordResetEmail')}>
-                            <Text style={{fontWeight:'bold',alignSelf:'center' , marginBottom:10}}>Forgot Password</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View>
-                        <TouchableOpacity onPress={()=>navigation.navigate('Registeration')}>
-                            <Text style={{fontWeight:'bold',alignSelf:'center'}}>New User Registeration ?</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
             </View>    
         </ScrollView> 
     </SafeAreaView>
   )
 }
 
-export default UserLoginScreen
+export default ChangePasswordScreen

@@ -1,13 +1,19 @@
 import { View, Text } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import HomeScreen from './HomeScreen.js'
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
 
 const Drawer = createDrawerNavigator();
 
 const ShopTab = () => {
+const navigation = useNavigation();
   return (
-    <Drawer.Navigator>
-        <Drawer.Screen name="Home" component={HomeScreen} options={{}} />
+    <Drawer.Navigator screenOptions={{headerStyle:{backgroundColor:'purple'},headerTintColor:'white',drawerStyle:{backgroundColor:'#F0DEDE'}}}>
+        <Drawer.Screen name="Home" component={HomeScreen} options={{headerTitle:'AR Shop',drawerActiveTintColor:'black',
+            headerRight:()=><TouchableWithoutFeedback onPress={()=>navigation.navigate('UserLogin')}>
+            <Text style={{color:'white',fontSize:18,paddingRight:20,fontWeight:'bold'}}>Login</Text>
+        </TouchableWithoutFeedback>}} />
     </Drawer.Navigator>
   )
 }
