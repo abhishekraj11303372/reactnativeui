@@ -6,9 +6,12 @@ import RegistrationScreen from "./app/screen/auth/RegisterationScreen";
 import SendPasswordResetEmailScreen from "./app/screen/auth/SendPasswordResetEmailScreen";
 import UserPanelTabScreen from "./app/screen/UserPanelTabScreen";
 
+import { store } from './app/store'
+import { Provider } from 'react-redux'
+
 const Stack = createNativeStackNavigator();
 
-export default function App() {
+function App() {
 return(
   <NavigationContainer>
     <Stack.Navigator  screenOptions={{headerStyle:{backgroundColor:'purple'},headerTintColor:'white'}}>
@@ -22,3 +25,12 @@ return(
 ); 
 }
 
+export default () => {
+  return(
+    <Provider store={store}>
+    <App />
+    </Provider>,
+  rootElement
+
+  )
+}
