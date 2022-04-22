@@ -7,6 +7,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { ScrollView } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
 import Checkbox from 'expo-checkbox'
+import { useRegisterMutation } from '../../../services/userAuthApi'
 
 const RegisterationScreen = () => {
     const navigation = useNavigation()
@@ -16,10 +17,14 @@ const RegisterationScreen = () => {
     const [confirmPassword,setConfirmPassword] = useState("");
     const [tc,setTc] = useState(false);
 
+    const [registerUser] = useRegisterMutation()
+
     const handleFormSubmit = () => {
         if(email && password && name && confirmPassword && tc) {
-            console.log("Account Created Successfully");
+            if(password===confirmPassword) {
+                console.log("Account Created Successfully");
             const formData = { name, email, password, confirmPassword, tc }
+            registerUser(formData)
             console.log(formData);
             const clearTextInput= () => {
                 setEmail(''),
@@ -34,6 +39,14 @@ const RegisterationScreen = () => {
                 topOffset:0,
                 text1:"Account Created Successfully",
             })
+            } else {
+                Toast.show({
+                    type:'warning',
+                    position:'top',
+                    topOffset:0,
+                    text1:"Password does not matches",
+                })
+            }
         }
         else {
             console.log("All Fields are Required");
