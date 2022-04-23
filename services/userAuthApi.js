@@ -20,4 +20,4 @@ export const userAuthApi = createApi({
   }),
 })
 
-export const { useRegisterMutation } = pokemonApi
+export const { useRegisterMutation } = userAuthApi

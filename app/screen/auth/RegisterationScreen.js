@@ -24,7 +24,7 @@ const RegisterationScreen = () => {
             if(password===confirmPassword) {
                 console.log("Account Created Successfully");
             const formData = { name, email, password, confirmPassword, tc }
-            registerUser(formData)
+            const res = registerUser(formData)
             console.log(formData);
             const clearTextInput= () => {
                 setEmail(''),
