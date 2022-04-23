@@ -29,8 +29,7 @@ export default () => {
   return(
     <Provider store={store}>
     <App />
-    </Provider>,
-  rootElement
+    </Provider>
 
   )
 }

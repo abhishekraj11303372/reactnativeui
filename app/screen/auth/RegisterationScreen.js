@@ -7,7 +7,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { ScrollView } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
 import Checkbox from 'expo-checkbox'
-import { useRegisterMutation } from '../../../services/userAuthApi'
+import { useRegisterUserMutation } from '../../../services/userAuthApi'
 
 const RegisterationScreen = () => {
     const navigation = useNavigation()
@@ -17,7 +17,7 @@ const RegisterationScreen = () => {
     const [confirmPassword,setConfirmPassword] = useState("");
     const [tc,setTc] = useState(false);
 
-    const [registerUser] = useRegisterMutation()
+    const [registerUser] = useRegisterUserMutation()
 
     const handleFormSubmit = () => {
         if(email && password && name && confirmPassword && tc) {
