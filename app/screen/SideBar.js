@@ -7,7 +7,7 @@ const SideBar = ({...props}) => {
     const navigation =useNavigation();
     const handleLogout = () => {
         navigation.navigate('Home');
-        console.log("logout");
+        // console.log("logout");
     }
   return (
     <DrawerContentScrollView {...props}>

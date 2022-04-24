@@ -22,10 +22,10 @@ const RegisterationScreen = () => {
     const handleFormSubmit = () => {
         if(email && password && name && confirmPassword && tc) {
             if(password===confirmPassword) {
-                console.log("Account Created Successfully");
+                // console.log("Account Created Successfully");
             const formData = { name, email, password, confirmPassword, tc }
             const res = registerUser(formData)
-            console.log(formData);
+            // console.log(formData);
             const clearTextInput= () => {
                 setEmail(''),
                 setName(''),
@@ -49,7 +49,7 @@ const RegisterationScreen = () => {
             }
         }
         else {
-            console.log("All Fields are Required");
+            // console.log("All Fields are Required");
             Toast.show({
                 type:'warning',
                 position:'top',

@@ -14,9 +14,9 @@ const UserLoginScreen = () => {
 
     const handleFormSubmit = () => {
         if(email && password ) {
-            console.log("Login Success");
+            // console.log("Login Success");
             const formData = { email, password }
-            console.log(formData);
+            // console.log(formData);
             const clearTextInput= () => {
                 setEmail(''),
                 setPassword('')
@@ -30,7 +30,7 @@ const UserLoginScreen = () => {
             navigation.navigate('UserPanelTab');
         }
         else {
-            console.log("All Fields are Required");
+            // console.log("All Fields are Required");
             Toast.show({
                 type:'warning',
                 position:'top',
