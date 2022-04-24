@@ -14,9 +14,9 @@ const ChangePasswordScreen = () => {
 
     const handleFormSubmit = () => {
         if( confirmPassword && password ) {
-            console.log("Password Changed Successfully");
+            // console.log("Password Changed Successfully");
             const formData = { password, confirmPassword }
-            console.log(formData);
+            // console.log(formData);
             const clearTextInput= () => {
                 setPassword(''),
                 setConfirmPassword('')
@@ -29,7 +29,7 @@ const ChangePasswordScreen = () => {
             });
         }
         else {
-            console.log("All Fields are Required");
+            // console.log("All Fields are Required");
             Toast.show({
                 type:'warning',
                 position:'top',

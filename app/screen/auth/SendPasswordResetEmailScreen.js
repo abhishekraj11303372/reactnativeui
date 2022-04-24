@@ -13,9 +13,9 @@ const SendPasswordResetEmailScreen = () => {
 
     const handleFormSubmit = () => {
         if(email) {
-            console.log("Login Success");
+            // console.log("Login Success");
             const formData = { email}
-            console.log(formData);
+            // console.log(formData);
             const clearTextInput= () => {
                 setEmail('')
             };
@@ -27,7 +27,7 @@ const SendPasswordResetEmailScreen = () => {
             })
         }
         else {
-            console.log("All Fields are Required");
+            // console.log("All Fields are Required");
             Toast.show({
                 type:'warning',
                 position:'top',
