@@ -10,12 +10,12 @@ import { useNavigation } from '@react-navigation/native';
 const ChangePasswordScreen = () => {
     const navigation = useNavigation();
     const [password,setPassword] = useState("");
-    const [confirmPassword,setConfirmPassword] = useState("");
+    const [confirm_password,setConfirmPassword] = useState("");
 
     const handleFormSubmit = () => {
-        if( confirmPassword && password ) {
+        if( confirm_password && password ) {
             // console.log("Password Changed Successfully");
-            const formData = { password, confirmPassword }
+            const formData = { password, confirm_password }
             // console.log(formData);
             const clearTextInput= () => {
                 setPassword(''),
@@ -53,7 +53,7 @@ const ChangePasswordScreen = () => {
                 </View> 
                 <View style={{marginHorizontal:30}}>
                     <Text style={styles.labelText}>Confirm New Password</Text>
-                    <TextInput value={confirmPassword} onChangeText={setConfirmPassword} placeholder="Confirm New Password here" onPress={console.log(confirmPassword)} style={styles.input}/>
+                    <TextInput value={confirm_password} onChangeText={setConfirmPassword} placeholder="Confirm New Password here" onPress={console.log(confirm_password)} style={styles.input}/>
                 </View> 
                 <View style={{marginHorizontal:30,width:200,alignSelf:'center',margin:20}}>
                     <Button title='Change Password' onPress={handleFormSubmit} color='purple' />
