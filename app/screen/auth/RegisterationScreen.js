@@ -14,18 +14,19 @@ const RegisterationScreen = () => {
     const [name,setName] = useState("");
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
-    const [confirmPassword,setConfirmPassword] = useState("");
+    const [confirm_password,setConfirmPassword] = useState("");
     const [tc,setTc] = useState(false);
 
     const [registerUser] = useRegisterUserMutation()
 
-    const handleFormSubmit = () => {
-        if(email && password && name && confirmPassword && tc) {
-            if(password===confirmPassword) {
+    const handleFormSubmit = async () => {
+        if(email && password && name && confirm_password && tc) {
+            if(password===confirm_password) {
                 // console.log("Account Created Successfully");
-            const formData = { name, email, password, confirmPassword, tc }
-            const res = registerUser(formData)
-            // console.log(formData);
+            const formData = { name, email, password, confirm_password, tc }
+            const res = await registerUser(formData)
+            console.log(res);
+            console.log(formData);
             const clearTextInput= () => {
                 setEmail(''),
                 setName(''),
@@ -78,7 +79,7 @@ const RegisterationScreen = () => {
                 </View> 
                 <View style={{marginHorizontal:30}}>
                     <Text style={styles.labelText}>Confirm Password</Text>
-                    <TextInput value={confirmPassword} onChangeText={setConfirmPassword} placeholder="Password here" onPress={console.log(password)} secureTextEntry={true} style={styles.input}/>
+                    <TextInput value={confirm_password} onChangeText={setConfirmPassword} placeholder="Password here" onPress={console.log(password)} secureTextEntry={true} style={styles.input}/>
                 </View> 
                 <View style={{marginHorizontal:40,marginTop:20,flex:1, flexDirection:'row'}}>
                     <Checkbox value={tc} onValueChange={setTc} color={tc? 'skyblue' : undefined } />
