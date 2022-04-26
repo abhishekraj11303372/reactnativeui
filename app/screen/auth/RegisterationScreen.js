@@ -19,27 +19,44 @@ const RegisterationScreen = () => {
 
     const [registerUser] = useRegisterUserMutation()
 
+    const clearTextInput= () => {
+                    setEmail(''),
+                    setName(''),
+                    setPassword(''),
+                    setConfirmPassword('')
+                    setTc(false)
+                };
+
     const handleFormSubmit = async () => {
         if(email && password && name && confirm_password && tc) {
             if(password===confirm_password) {
                 // console.log("Account Created Successfully");
             const formData = { name, email, password, confirm_password, tc }
             const res = await registerUser(formData)
-            console.log(res);
-            console.log(formData);
-            const clearTextInput= () => {
-                setEmail(''),
-                setName(''),
-                setPassword(''),
-                setConfirmPassword('')
-                setTc(false)
-            };
-            Toast.show({
-                type:'done',
-                position:'top',
-                topOffset:0,
-                text1:"Account Created Successfully",
-            })
+                if(res.data.status === "success") {
+                    console.log(res);
+                console.log(formData);
+                clearTextInput();
+                Toast.show({
+                    type:'done',
+                    position:'top',
+                    topOffset:0,
+                    text1: res.data.message,
+                })
+                }
+
+                if(res.data.status === "failed") {
+                    console.log(res);
+                console.log(formData);
+                clearTextInput();
+                Toast.show({
+                    type:'done',
+                    position:'top',
+                    topOffset:0,
+                    text1: res.data.message,
+                })
+                }
+
             } else {
                 Toast.show({
                     type:'warning',
