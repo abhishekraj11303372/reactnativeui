@@ -6,11 +6,14 @@ import { Toast } from 'react-native-toast-message/lib/src/Toast'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
+import { useLoginUserMutation } from '../../../services/userAuthApi'
 
 const UserLoginScreen = () => {
     const navigation = useNavigation();
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
+
+    const [loginUser] = useLoginUserMutation();
 
     const handleFormSubmit = () => {
         if(email && password ) {

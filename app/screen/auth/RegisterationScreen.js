@@ -36,13 +36,9 @@ const RegisterationScreen = () => {
                 if(res.data.status === "success") {
                     console.log(res);
                 console.log(formData);
+                //Store Token in storage
                 clearTextInput();
-                Toast.show({
-                    type:'done',
-                    position:'top',
-                    topOffset:0,
-                    text1: res.data.message,
-                })
+                navigation.navigate('UserPanelTab')
                 }
 
                 if(res.data.status === "failed") {
