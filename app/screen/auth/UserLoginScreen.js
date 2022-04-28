@@ -7,6 +7,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { ScrollView } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import { useLoginUserMutation } from '../../../services/userAuthApi'
+import { storeToken } from '../../../services/AsyncStorageService'
 
 const UserLoginScreen = () => {
     const navigation = useNavigation();
@@ -15,22 +16,37 @@ const UserLoginScreen = () => {
 
     const [loginUser] = useLoginUserMutation();
 
-    const handleFormSubmit = () => {
+    const clearTextInput= () => {
+        setEmail(''),
+        setPassword('')
+    };
+
+    const handleFormSubmit = async () => {
         if(email && password ) {
             // console.log("Login Success");
             const formData = { email, password }
+            const res = await loginUser(formData);
             // console.log(formData);
-            const clearTextInput= () => {
-                setEmail(''),
-                setPassword('')
-            };
+            if(res.data.status === "success") {
+                console.log(res);
+            console.log(formData);
+            //Store Token in storage
+            await storeToken(res.data.token);
+            clearTextInput();
+            navigation.navigate('UserPanelTab')
+            }
+
+            if(res.data.status === "failed") {
+                console.log(res);
+            console.log(formData);
+            clearTextInput();
             Toast.show({
                 type:'done',
                 position:'top',
                 topOffset:0,
-                text1:"Login Success",
-            });
-            navigation.navigate('UserPanelTab');
+                text1: res.data.message,
+            })
+            }
         }
         else {
             // console.log("All Fields are Required");

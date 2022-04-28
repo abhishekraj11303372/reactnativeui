@@ -8,6 +8,7 @@ import { ScrollView } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
 import Checkbox from 'expo-checkbox'
 import { useRegisterUserMutation } from '../../../services/userAuthApi'
+import { storeToken } from '../../../services/AsyncStorageService'
 
 const RegisterationScreen = () => {
     const navigation = useNavigation()
@@ -37,6 +38,7 @@ const RegisterationScreen = () => {
                     console.log(res);
                 console.log(formData);
                 //Store Token in storage
+                await storeToken(res.data.token);
                 clearTextInput();
                 navigation.navigate('UserPanelTab')
                 }
