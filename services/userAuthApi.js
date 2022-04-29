@@ -29,8 +29,17 @@ export const userAuthApi = createApi({
               }
           }
       }
-  })
+  }),
+  getLoggedUser:builder.query({
+    query:(token)=> ({
+      url: 'loggeduser',
+            method: 'GET',
+            headers: {
+                'authorization': `Bearer ${token}`,
+            },
+    })
+})
   }),
 })
 
-export const { useRegisterUserMutation,useLoginUserMutation } = userAuthApi
+export const { useRegisterUserMutation,useLoginUserMutation,useGetLoggedUserQuery } = userAuthApi

@@ -1,6 +1,7 @@
 import { View, Text } from 'react-native'
 import React, {useEffect, useState} from 'react'
 import { getToken } from '../../services/AsyncStorageService'
+import { useGetLoggedUserQuery } from '../../services/userAuthApi'
 
 const DashboardScreen = () => {
   const [userLToken,setUserLToken]= useState();
@@ -13,6 +14,9 @@ const DashboardScreen = () => {
       })(); 
   })
   
+  const {data} = useGetLoggedUserQuery(userLToken)
+  console.log("User data",data)
+
   return (
     <View>
       <Text>DashboardScreen</Text>
