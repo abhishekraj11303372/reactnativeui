@@ -22,7 +22,7 @@ const storeToken = async (value) => {
 
 const removeToken = async (value) => {
       try {
-        await AsyncStorage.removeItem('token', value)
+        await AsyncStorage.removeItem(value)
   } catch (error) {
     console.log(error);
 }
