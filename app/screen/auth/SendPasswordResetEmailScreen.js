@@ -6,25 +6,42 @@ import { Toast } from 'react-native-toast-message/lib/src/Toast'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
+import { useResetUserPasswordEmailMutation } from '../../../services/userAuthApi'
 
 const SendPasswordResetEmailScreen = () => {
     const navigation = useNavigation();
     const [email,setEmail] = useState("");
-
-    const handleFormSubmit = () => {
+    const [resetUserPasswordEmail] = useResetUserPasswordEmailMutation();
+    const clearTextInput= () => {
+        setEmail('')
+    };
+    
+    const handleFormSubmit = async () => {
         if(email) {
             // console.log("Login Success");
-            const formData = { email}
+            const formData = { email }
+            const res = await resetUserPasswordEmail(formData)
             // console.log(formData);
-            const clearTextInput= () => {
-                setEmail('')
-            };
+            console.log(res);
+           if(res.data.status === "success") {
+            clearTextInput();
             Toast.show({    
                 type:'done',
                 position:'top',
                 topOffset:0,
-                text1:"Login Success",
-            })
+                text1:"Password Reset Email Sent to your mail",
+            });
+        }
+
+            if(res.data.status === "failed") {
+                clearTextInput();
+                Toast.show({    
+                    type:'warning',
+                    position:'top',
+                    topOffset:0,
+                    text1: res.data.message,
+                });
+           }
         }
         else {
             // console.log("All Fields are Required");
