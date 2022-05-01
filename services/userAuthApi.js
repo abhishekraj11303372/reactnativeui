@@ -38,8 +38,21 @@ export const userAuthApi = createApi({
                 'authorization': `Bearer ${token}`,
             },
     })
-})
+}),
+resetUserPasswordEmail:builder.mutation({
+  query:(user)=> {
+      return {
+          url: 'resetUserPasswordEmail',
+          method: 'POST',
+          body: user,
+          headers: {
+              'Content-type': 'application/json',
+
+          }
+      }
+  }
+}),
   }),
 })
 
-export const { useRegisterUserMutation,useLoginUserMutation,useGetLoggedUserQuery } = userAuthApi
+export const { useRegisterUserMutation,useLoginUserMutation,useGetLoggedUserQuery,useResetUserPasswordEmailMutation } = userAuthApi
