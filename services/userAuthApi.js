@@ -52,7 +52,20 @@ resetUserPasswordEmail:builder.mutation({
       }
   }
 }),
+changeUserPassword:builder.mutation({
+  query:({formdata, userLToken})=> {
+      return {
+          url: 'changepassword',
+          method: 'POST',
+          body: formdata,
+          headers: {
+            'authorization': `Bearer ${userLToken}`,
+
+          }
+      }
+  }
+}),
   }),
 })
 
-export const { useRegisterUserMutation,useLoginUserMutation,useGetLoggedUserQuery,useResetUserPasswordEmailMutation } = userAuthApi
+export const { useRegisterUserMutation,useLoginUserMutation,useGetLoggedUserQuery,useResetUserPasswordEmailMutation,useChangeUserPasswordMutation } = userAuthApi
