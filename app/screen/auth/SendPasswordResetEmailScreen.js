@@ -21,8 +21,8 @@ const SendPasswordResetEmailScreen = () => {
             // console.log("Login Success");
             const formData = { email }
             const res = await resetUserPasswordEmail(formData)
-            // console.log(formData);
-            console.log(res);
+            console.log("form",formData);
+            console.log("res",res);
            if(res.data.status === "success") {
             clearTextInput();
             Toast.show({    
