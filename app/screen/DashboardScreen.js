@@ -4,6 +4,7 @@ import { getToken } from '../../services/AsyncStorageService'
 import { useGetLoggedUserQuery } from '../../services/userAuthApi'
 import { useDispatch } from 'react-redux'
 import { setUserInfo } from '../features/userSlice'
+import { setUserToken } from '../features/authSlice'
 
 const DashboardScreen = () => {
   const [userLToken,setUserLToken]= useState();
@@ -11,8 +12,9 @@ const DashboardScreen = () => {
   useEffect(()=>{
     (
       async() => {
-        const token = await getToken()
-        setUserLToken(token);
+        const token = await getToken() // getting token from local storage
+        setUserLToken(token);           // getting token from local state
+        dispatch(setUserToken({token:token})) // getting token from redux store
       })(); 
   })
   
