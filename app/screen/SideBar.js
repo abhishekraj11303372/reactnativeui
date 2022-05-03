@@ -17,9 +17,9 @@ const SideBar = ({...props}) => {
     const navigation =useNavigation();
 //getting user data from redux store using useSelector
     const myData = useSelector(state => state.user)
-    const myToken = useSelector(state => state.auth)
+    // const myToken = useSelector(state => state.auth)
     console.log("mydata",myData)
-    console.log("mytoken",myToken)
+    // console.log("mytoken",myToken)
 
   return (
     <DrawerContentScrollView {...props}>
