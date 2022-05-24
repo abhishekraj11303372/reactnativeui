@@ -1,3 +1,3 @@
 # reactnativeui
 
-Expo based react native app
+Expo based react native mobile app
